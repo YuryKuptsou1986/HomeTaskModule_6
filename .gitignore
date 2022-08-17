@@ -1,0 +1,9 @@
+BasketService/bin/
+BasketService/obj/
+GraphQL/obj/
+ServiceMessaging/obj/
+ServiceMessaging/bin/
+.vs/MessageBroker/FileContentIndex/188b016e-8da5-4b23-901a-f3e31acc1b48.vsidx
+.vs/MessageBroker/FileContentIndex/c4217c02-d79d-491a-9c1a-d94117950063.vsidx
+.vs/MessageBroker/FileContentIndex/read.lock
+.vs/

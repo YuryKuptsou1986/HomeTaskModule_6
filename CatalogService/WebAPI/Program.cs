@@ -1,6 +1,9 @@
 using BLL;
 using DAL;
 using FluentValidation.AspNetCore;
+using AppAny.HotChocolate.FluentValidation;
+using GraphQl.Mutations;
+using GraphQl.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -46,12 +49,36 @@ builder.Services.AddSingleton<IRabbitMqConnectionFactory, RabbitMqConnectionFact
 builder.Services.AddSingleton<IRabbitMqConnection, RabbitMqConnection>();
 builder.Services.AddTransient<IMessageQueueSender, RabbitMessageQueueSender>();
 
+// GraphQL
+builder.Services
+    .AddGraphQLServer()
+
+    .AddQueryType<Queries>()
+    .AddTypeExtension<CategoryQueries>()
+
+    .AddMutationType<Mutations>()
+    .AddTypeExtension<CategoryMutations>()
+    .AddTypeExtension<ItemMutations>()
+
+    .AddFiltering()
+    .AddSorting()
+    .AddProjections()
+    .AddFluentValidation(o =>
+    {
+        o.UseDefaultErrorMapper();
+    })
+//.AddQueryType<ItemQueries>()
+;
+
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    //app.UseSwagger();
+    //app.UseSwaggerUI();
 }
+app.MapGraphQL();
+
+
 
 app.UseAuthorization();
 
