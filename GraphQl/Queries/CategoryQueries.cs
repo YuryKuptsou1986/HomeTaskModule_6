@@ -11,9 +11,10 @@ namespace GraphQl.Queries
     [ExtendObjectType(typeof(Queries))]
     public class CategoryQueries
     {
+        [UsePaging(IncludeTotalCount = true, DefaultPageSize = 2)]
         [UseProjection]
         [UseFiltering]
         [UseSorting]
-        public Task<IEnumerable<CategoryViewModel>> Categories([Service] ICategoryService categoryService) => categoryService.ListAsync();
+        public IQueryable<CategoryViewModel> Categories([Service] ICategoryService categoryService) => categoryService.List();
     }
 }

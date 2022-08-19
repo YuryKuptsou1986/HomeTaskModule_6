@@ -42,6 +42,13 @@ namespace BLL.Services
             await _repository.AddAsync(newItem);
         }
 
+        public IQueryable<ItemViewModel> List()
+        {
+            var items = _repository.List();
+
+            return _mapper.ProjectTo<ItemViewModel>(items);
+        }
+
         public async Task<IPagedCollection<ItemViewModel>> ListAsync(ItemQuery query)
         {
             var items = await _repository.ListAsync(query);

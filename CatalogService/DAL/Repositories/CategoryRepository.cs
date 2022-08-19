@@ -56,6 +56,11 @@ namespace DAL.Repositories
             return items;
         }
 
+        public IQueryable<Category> List()
+        {
+            return _dbContext.Categories.Select(x => x);
+        }
+
         public async Task UpdateAsync(CategoryUpdateDataModel item)
         {
             var entity = await _dbContext.Categories.FindAsync(new object[] { item.Id });

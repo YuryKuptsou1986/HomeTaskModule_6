@@ -9,6 +9,7 @@ namespace BLL.Services
     public interface IItemService
     {
         Task<IPagedCollection<ItemViewModel>> ListAsync(ItemQuery query);
+        IQueryable<ItemViewModel> List();
         Task<ItemViewModel> GetAsync(int id);
         Task AddAsync(ItemInsertModel item);
         Task DeleteAsync(int id);

@@ -51,6 +51,11 @@ namespace DAL.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
+        public IQueryable<Item> List()
+        {
+            return _dbContext.Items.Select(x => x);
+        }
+
         public async Task<IPagedCollection<Item>> ListAsync(ItemQuery query)
         {
             var filter = _itemFilterBuilder.WhereCategoryId(query.CategoryId).Filter;

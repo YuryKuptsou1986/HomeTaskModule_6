@@ -36,6 +36,12 @@ namespace BLL.Services
             await _repository.AddAsync(newCategory);
         }
 
+        public IQueryable<CategoryViewModel> List()
+        {
+            var categories = _repository.List();
+            return _mapper.ProjectTo<CategoryViewModel>(categories);
+        }
+
         public async Task<IEnumerable<CategoryViewModel>> ListAsync()
         {
             var categories = await _repository.ListAsync();

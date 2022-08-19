@@ -55,6 +55,7 @@ builder.Services
 
     .AddQueryType<Queries>()
     .AddTypeExtension<CategoryQueries>()
+    .AddTypeExtension<ItemQueries>()
 
     .AddMutationType<Mutations>()
     .AddTypeExtension<CategoryMutations>()
